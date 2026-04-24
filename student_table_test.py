@@ -39,6 +39,7 @@ print("-" * 25)
 fig, ax = plt.subplots()
 # 绘制散点图  注意: 下面数据是随便传的,未来根据具体需求决定x,y内容
 ax.scatter(x=df['语文'], y=df['数学'])
-# ax.set_xlabel('x')
+ax.set_xlabel('语文')
+ax.set_ylabel('数学')
 ax.set_title('班级偏科情况')
 plt.show()
