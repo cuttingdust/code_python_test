@@ -31,7 +31,7 @@ class Service:
             count = self.redis.get(key)
             if count is None:
                 # 第一次，设置过期时间20秒，初始值1
-                self.redis.setex(key, 20, 1)
+                self.redis.set(key, 1, ex=20)
                 # 打印 Key 创建信息
                 print(f"[{user_id}] 🔑 创建 Key: {key}, 初始值=1, 过期时间=20秒")
                 count = 1
@@ -49,7 +49,7 @@ class Service:
                 new_count = self.redis.incr(key)
 
                 assert isinstance(new_count, int)
-                count += int(new_count)
+                count = int(new_count)
                 # 打印自增后的 Key 状态
                 ttl = self.redis.ttl(key)
                 print(f"[{user_id}] 🔑 Key: {key}, 自增后值={count}, 剩余TTL={ttl}秒")
